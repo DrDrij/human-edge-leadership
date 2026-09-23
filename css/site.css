@@ -58,7 +58,7 @@ header.site { background: var(--paper); border-bottom: 1px solid rgba(22, 33, 29
 .logo {
   font-family: 'Space Mono', monospace;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
@@ -78,8 +78,8 @@ header.site { background: var(--paper); border-bottom: 1px solid rgba(22, 33, 29
   font-size: 1.05rem;
   color: var(--ink);
 }
-nav.primary ul { display: flex; gap: 1.5rem; list-style: none; }
-nav.primary a { text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+nav.primary ul { display: flex; gap: 1.15rem; list-style: none; flex-wrap: wrap; }
+nav.primary a { text-decoration: none; font-weight: 500; font-size: 0.9rem; white-space: nowrap; }
 nav.primary a:hover { color: var(--mint-deep); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 nav.primary a[aria-current="page"] {
   color: var(--mint-deep);
@@ -698,7 +698,9 @@ footer.site a:focus-visible { outline-color: var(--mint); }
   .hero-grid, .situation-head, .bio-grid, .partner-grid { grid-template-columns: 1fr; }
   .simple-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 1.8rem; }
-  nav.primary { display: none; }
+  .header-in { flex-wrap: wrap; }
+  nav.primary ul { gap: 0.6rem 1.2rem; }
+  nav.primary a { font-size: 0.88rem; }
   .way-head .mark { margin-left: 0; width: 100%; }
 }
 .label-short { display: none; }
