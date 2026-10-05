@@ -48,9 +48,11 @@
           </div>
           <figcaption><span>Still 037</span><span class="t">On set, Burning House</span></figcaption>
         </figure>
-        <figure class="still placeholder">
-          <div class="frame"><span class="mono">Photo coming soon</span></div>
-          <figcaption><span>Still 002</span><span class="t">Workshop in session</span></figcaption>
+        <figure class="still">
+          <div class="video-card" style="border: none; box-shadow: none; border-radius: 0;">
+            <video src="img/training-sample.mp4" poster="img/training-sample-poster.jpg" muted autoplay loop playsinline controls aria-label="Sample video of Felicity delivering a training session on body language"></video>
+          </div>
+          <figcaption><span>Sample reel</span><span class="t">Flick, in session</span></figcaption>
         </figure>
         <figure class="still placeholder">
           <div class="frame"><span class="mono">Photo coming soon</span></div>
@@ -64,20 +66,43 @@
     <div class="wrap">
       <div class="act-label"><span class="mono">Testimonials</span></div>
       <h2 id="test-h">In their words</h2>
-      <div class="test-grid">
-        <div class="test-card placeholder">
-          <blockquote>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum.&rdquo;</blockquote>
-          <span class="who">Lorem Ipsum &middot; Head of People, Placeholder Co &middot; placeholder</span>
+      <div class="carousel">
+        <div class="carousel-track" id="test-track" tabindex="0" aria-label="Testimonials, scroll horizontally">
+          <div class="test-card">
+            <blockquote>&ldquo;Ohhh Felicity Barrow&hellip; as the saying goes, &lsquo;they broke the mold&rsquo;. Your authenticity, insight, care and impact has left an indelible mark on all those that have been fortunate enough to work with you.&rdquo;</blockquote>
+            <span class="who">Mary Lemonis &middot; Chief People Officer, Built</span>
+          </div>
+          <div class="test-card">
+            <blockquote>&ldquo;Felicity navigated complex topics with a rare combination of empathy, insight and humour. Through compelling storytelling, engaging film content and thought-provoking discussion, she created an environment where people felt comfortable having honest conversations about feedback, inclusion and the way we work together. Participants left with practical tools they could immediately apply, and her approach resonated strongly with both our leaders and teams.&rdquo;</blockquote>
+            <span class="who">Rachel Wilson &middot; Former Head of People, Twinings</span>
+          </div>
+          <div class="test-card">
+            <blockquote>&ldquo;Felicity is a leader who brings a powerful combination of strategic thinking, deep care for people, and genuine partnership to designing leadership programs that strengthen capability and enable high performance. What really sets Felicity apart is her ability to understand the unique needs and context of each client group, rather than applying a one-size-fits-all approach. I deeply valued working with Felicity at REA Group. She challenged my thinking, worked through complex problems alongside me, and helped drive better outcomes for the leaders, people and culture.&rdquo;</blockquote>
+            <span class="who">Anna Jackson &middot; Snr HRBP, Canva</span>
+          </div>
+          <div class="test-card">
+            <blockquote>&ldquo;I was lucky enough to work with Flick at a previous workplace, and I cannot speak highly enough of the care, empathy, and guidance she showed not only me, but so many other aspiring leaders. Her courses were always based in strong theoretical knowledge, but were also light-hearted and fun; it was in the practical application where the learning came to life. I know that I personally got so much out of her leadership courses, and they gave me a real sense of confidence that I was leading in the right way.&rdquo;</blockquote>
+            <span class="who">Nick Leggat &middot; Head of Growth, Tomorrow Agency</span>
+          </div>
         </div>
-        <div class="test-card placeholder">
-          <blockquote>&ldquo;Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.&rdquo;</blockquote>
-          <span class="who">Dolor Sit &middot; General Manager, Example Group &middot; placeholder</span>
-        </div>
-        <div class="test-card placeholder">
-          <blockquote>&ldquo;Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula.&rdquo;</blockquote>
-          <span class="who">Amet Consectetur &middot; Director, Sample Org &middot; placeholder</span>
+        <div class="carousel-nav">
+          <button type="button" id="test-prev" aria-label="Previous testimonial">&larr;</button>
+          <button type="button" id="test-next" aria-label="Next testimonial">&rarr;</button>
         </div>
       </div>
+      <script>
+        (function () {
+          var track = document.getElementById("test-track");
+          var step = function () { return track.querySelector(".test-card").offsetWidth + 22; };
+          document.getElementById("test-prev").addEventListener("click", function () {
+            track.scrollBy({ left: -step(), behavior: "smooth" });
+          });
+          document.getElementById("test-next").addEventListener("click", function () {
+            track.scrollBy({ left: step(), behavior: "smooth" });
+          });
+        })();
+      </script>
+
     </div>
   </section>
 

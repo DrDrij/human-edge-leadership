@@ -34,8 +34,116 @@
     <div class="wrap">
       <span class="mono">Part 6 &middot; Book a conversation</span>
       <h1 id="page-h">Shall we <em>talk?</em></h1>
-      <p>We're looking for early-adopter clients, strategic partners and creative collaborators. Bring your hardest culture problem + we'll bring the ideas.</p>
-      <a class="btn btn-mint btn-big" href="mailto:contact@humanedgeleadership.com.au">Book a conversation</a>
+      <p>We'd love to talk to you about how we can work together to elevate the human edge in your leaders and teams. Bring us your hardest human challenges + we'll bring the ideas to create lasting and positive change.</p>
+      <a class="btn btn-mint btn-big" href="#book-form">Start the conversation</a>
+
+      <form class="book-form" id="book-form" novalidate aria-labelledby="form-h">
+        <h2 id="form-h">Book a conversation</h2>
+        <p class="form-note">Fields marked <span class="req">*</span> are required. Submitting opens an email to us in your mail app, pre-filled with your answers.</p>
+        <div class="form-error" id="form-error" role="alert">Please fill in the required fields: name and email.</div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-title">Position title</label>
+            <input id="f-title" name="title" type="text" autocomplete="organization-title">
+          </div>
+          <div class="field">
+            <label for="f-org">Organisation</label>
+            <input id="f-org" name="org" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field full">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <fieldset style="border: none; display: grid; gap: 0.9rem;">
+          <legend style="font-weight: 600; margin-bottom: 0.6rem;">How can we work with you? Select areas that interest you (optional):</legend>
+          <div class="choice-groups">
+            <div class="choice-group">
+              <span class="mono">Signature flagship programs</span>
+              <label><input type="checkbox" name="interest" value="Presenting">Presenting</label>
+              <label><input type="checkbox" name="interest" value="Facilitation">Facilitation</label>
+              <label><input type="checkbox" name="interest" value="Leadership">Leadership</label>
+            </div>
+            <div class="choice-group">
+              <span class="mono">Coaching</span>
+              <label><input type="checkbox" name="interest" value="Individual coaching">Individual</label>
+              <label><input type="checkbox" name="interest" value="Team sessions">Team sessions</label>
+              <label><input type="checkbox" name="interest" value="Behavioural diagnostic tests">Behavioural diagnostic tests</label>
+            </div>
+            <div class="choice-group">
+              <span class="mono">Tailored experiences</span>
+              <label><input type="checkbox" name="interest" value="Offsites, keynotes">Offsites, keynotes</label>
+              <label><input type="checkbox" name="interest" value="Other">Other</label>
+              <div class="field">
+                <label for="f-other" class="form-note">Specify if you can:</label>
+                <input id="f-other" name="other" type="text">
+              </div>
+            </div>
+            <div class="choice-group">
+              <span class="mono">Creative endeavours</span>
+              <label><input type="checkbox" name="interest" value="Film making">Film making</label>
+              <label><input type="checkbox" name="interest" value="Zumba">Zumba</label>
+            </div>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="f-challenges">What current issues, challenges or opportunities are you facing?</label>
+          <textarea id="f-challenges" name="challenges"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-goals">Tell us about your goals and your reason for reaching out.</label>
+          <textarea id="f-goals" name="goals"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-mint btn-big">Submit form</button>
+        </div>
+        <p class="form-note">Thanks for getting in touch with Human Edge Leadership. We'll get back to you as soon as we can; we're excited to connect and have an upfront human conversation with you.</p>
+      </form>
+      <script>
+        document.getElementById("book-form").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var err = document.getElementById("form-error");
+          var name = document.getElementById("f-name").value.trim();
+          var email = document.getElementById("f-email").value.trim();
+          if (!name || !email || email.indexOf("@") < 1) {
+            err.classList.add("show");
+            err.focus && err.focus();
+            return;
+          }
+          err.classList.remove("show");
+          var v = function (id) { return document.getElementById(id).value.trim(); };
+          var interests = Array.prototype.map.call(
+            document.querySelectorAll('input[name="interest"]:checked'),
+            function (c) { return c.value; }).join(", ");
+          var body = [
+            "Name: " + name,
+            "Position title: " + v("f-title"),
+            "Organisation: " + v("f-org"),
+            "Email: " + email,
+            "Phone: " + v("f-phone"),
+            "",
+            "Areas of interest: " + (interests || "(none selected)"),
+            "Other detail: " + v("f-other"),
+            "",
+            "Current issues, challenges or opportunities:",
+            v("f-challenges"),
+            "",
+            "Goals and reason for reaching out:",
+            v("f-goals")
+          ].join("\n");
+          window.location.href = "mailto:contact@humanedgeleadership.com.au"
+            + "?subject=" + encodeURIComponent("Book a conversation: " + name + (v("f-org") ? ", " + v("f-org") : ""))
+            + "&body=" + encodeURIComponent(body);
+        });
+      </script>
       <div class="contact-card">
         <span class="name">Felicity Barrow</span>
         <div class="contact-line">
