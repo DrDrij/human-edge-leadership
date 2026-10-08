@@ -112,12 +112,8 @@
           </div>
         </fieldset>
         <div class="field">
-          <label for="f-challenges">What current issues, challenges or opportunities are you facing?</label>
-          <textarea id="f-challenges" name="challenges"></textarea>
-        </div>
-        <div class="field">
-          <label for="f-goals">Tell us about your goals and your reason for reaching out.</label>
-          <textarea id="f-goals" name="goals"></textarea>
+          <label for="f-message">What issues, challenges or opportunities are you facing, and what are your goals in reaching out?</label>
+          <textarea id="f-message" name="message" style="min-height: 9rem;"></textarea>
         </div>
         <div>
           <button type="submit" class="btn btn-mint btn-big">Submit form</button>
@@ -150,11 +146,8 @@
             "Areas of interest: " + (interests || "(none selected)"),
             "Other detail: " + v("f-other"),
             "",
-            "Current issues, challenges or opportunities:",
-            v("f-challenges"),
-            "",
-            "Goals and reason for reaching out:",
-            v("f-goals")
+            "Issues, challenges, opportunities + goals:",
+            v("f-message")
           ].join("\n");
           window.location.href = "mailto:contact@humanedgeleadership.com.au"
             + "?subject=" + encodeURIComponent("Book a conversation: " + name + (v("f-org") ? ", " + v("f-org") : ""))
