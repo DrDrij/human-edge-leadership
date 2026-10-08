@@ -115,20 +115,28 @@
           <label for="f-message">What issues, challenges or opportunities are you facing, and what are your goals in reaching out?</label>
           <textarea id="f-message" name="message" style="min-height: 9rem;"></textarea>
         </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position: absolute; left: -9999px;" aria-hidden="true">
+        <div class="form-error" id="form-success" style="border-color: var(--mint-deep); color: var(--mint-deep);" role="status">Thanks, your message is on its way. We'll be in touch soon.</div>
         <div>
-          <button type="submit" class="btn btn-mint btn-big">Submit form</button>
+          <button type="submit" class="btn btn-mint btn-big" id="form-submit">Submit form</button>
         </div>
         <p class="form-note">Thanks for getting in touch with Human Edge Leadership. We'll get back to you as soon as we can; we're excited to connect and have an upfront human conversation with you.</p>
       </form>
       <script>
+        // Paste the Formspree endpoint here (e.g. "https://formspree.io/f/abcd1234")
+        // to send submissions via Formspree. Leave empty to fall back to a
+        // pre-filled email in the visitor's mail app.
+        var FORMSPREE_ENDPOINT = "";
+
         document.getElementById("book-form").addEventListener("submit", function (e) {
           e.preventDefault();
           var err = document.getElementById("form-error");
+          var ok = document.getElementById("form-success");
+          ok.classList.remove("show");
           var name = document.getElementById("f-name").value.trim();
           var email = document.getElementById("f-email").value.trim();
           if (!name || !email || email.indexOf("@") < 1) {
             err.classList.add("show");
-            err.focus && err.focus();
             return;
           }
           err.classList.remove("show");
@@ -136,6 +144,41 @@
           var interests = Array.prototype.map.call(
             document.querySelectorAll('input[name="interest"]:checked'),
             function (c) { return c.value; }).join(", ");
+
+          if (FORMSPREE_ENDPOINT) {
+            var btn = document.getElementById("form-submit");
+            btn.disabled = true;
+            fetch(FORMSPREE_ENDPOINT, {
+              method: "POST",
+              headers: { "Accept": "application/json", "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: name,
+                "position title": v("f-title"),
+                organisation: v("f-org"),
+                email: email,
+                phone: v("f-phone"),
+                "areas of interest": interests || "(none selected)",
+                "other detail": v("f-other"),
+                message: v("f-message"),
+                _gotcha: document.querySelector('input[name="_gotcha"]').value
+              })
+            }).then(function (r) {
+              btn.disabled = false;
+              if (r.ok) {
+                ok.classList.add("show");
+                document.getElementById("book-form").reset();
+              } else {
+                err.textContent = "Something went wrong sending the form. Please email us instead.";
+                err.classList.add("show");
+              }
+            }).catch(function () {
+              btn.disabled = false;
+              err.textContent = "Something went wrong sending the form. Please email us instead.";
+              err.classList.add("show");
+            });
+            return;
+          }
+
           var body = [
             "Name: " + name,
             "Position title: " + v("f-title"),
