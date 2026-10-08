@@ -233,12 +233,16 @@ nav.primary a[aria-current="page"] {
 
 /* cut-paper composition (brand art) */
 .cutout {
+  display: block;
   position: relative;
   aspect-ratio: 4 / 5;
   width: 100%;
   max-width: 22rem;
   justify-self: end;
+  text-decoration: none;
 }
+a.cutout { transition: transform 0.15s; }
+a.cutout:hover { transform: translateY(-3px) rotate(-0.5deg); }
 .cutout > div { position: absolute; border: 2.5px solid var(--ink); }
 .cutout .shape-circle {
   width: 62%; aspect-ratio: 1; border-radius: 50%;
