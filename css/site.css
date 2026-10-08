@@ -440,32 +440,17 @@ h2 { font-size: clamp(1.9rem, 3.8vw, 2.7rem); line-height: 1.1; letter-spacing: 
 .cluster-band.alt { background: #f0eee6; }
 .cluster-band .way-head { margin-bottom: 1rem; }
 
-/* ---------- testimonial carousel ---------- */
-.carousel { position: relative; margin-top: 2.4rem; }
-.carousel-track {
-  display: flex;
-  gap: 1.4rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 0.5rem 0.25rem 1.2rem;
-  scrollbar-width: thin;
+/* ---------- testimonial masonry ---------- */
+.test-masonry {
+  columns: 3 20rem;
+  column-gap: 1.4rem;
+  margin-top: 2.4rem;
+  padding: 0.25rem;
 }
-.carousel-track .test-card {
-  flex: 0 0 min(30rem, 85%);
-  scroll-snap-align: start;
+.test-masonry .test-card {
+  break-inside: avoid;
+  margin-bottom: 1.4rem;
 }
-.carousel-nav { display: flex; gap: 0.7rem; justify-content: flex-end; margin-top: 0.4rem; }
-.carousel-nav button {
-  width: 3rem; height: 3rem;
-  border-radius: 50%;
-  border: 2.5px solid var(--ink);
-  background: var(--paper);
-  font-size: 1.2rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
-}
-.carousel-nav button:hover { background: var(--mint); transform: translateY(-2px); }
 
 /* video card */
 .video-card {

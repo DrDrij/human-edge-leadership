@@ -66,8 +66,7 @@
     <div class="wrap">
       <div class="act-label"><span class="mono">Testimonials</span></div>
       <h2 id="test-h">In their words</h2>
-      <div class="carousel">
-        <div class="carousel-track" id="test-track" tabindex="0" aria-label="Testimonials, scroll horizontally">
+      <div class="test-masonry">
           <div class="test-card">
             <blockquote>&ldquo;Ohhh Felicity Barrow&hellip; as the saying goes, &lsquo;they broke the mold&rsquo;. Your authenticity, insight, care and impact has left an indelible mark on all those that have been fortunate enough to work with you.&rdquo;</blockquote>
             <span class="who">Mary Lemonis &middot; Chief People Officer, Built</span>
@@ -84,24 +83,7 @@
             <blockquote>&ldquo;I was lucky enough to work with Flick at a previous workplace, and I cannot speak highly enough of the care, empathy, and guidance she showed not only me, but so many other aspiring leaders. Her courses were always based in strong theoretical knowledge, but were also light-hearted and fun; it was in the practical application where the learning came to life. I know that I personally got so much out of her leadership courses, and they gave me a real sense of confidence that I was leading in the right way.&rdquo;</blockquote>
             <span class="who">Nick Leggat &middot; Head of Growth, Tomorrow Agency</span>
           </div>
-        </div>
-        <div class="carousel-nav">
-          <button type="button" id="test-prev" aria-label="Previous testimonial">&larr;</button>
-          <button type="button" id="test-next" aria-label="Next testimonial">&rarr;</button>
-        </div>
       </div>
-      <script>
-        (function () {
-          var track = document.getElementById("test-track");
-          var step = function () { return track.querySelector(".test-card").offsetWidth + 22; };
-          document.getElementById("test-prev").addEventListener("click", function () {
-            track.scrollBy({ left: -step(), behavior: "smooth" });
-          });
-          document.getElementById("test-next").addEventListener("click", function () {
-            track.scrollBy({ left: step(), behavior: "smooth" });
-          });
-        })();
-      </script>
 
     </div>
   </section>
