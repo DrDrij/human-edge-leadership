@@ -714,6 +714,32 @@ details.prog summary:hover { background: #f0eee6; }
   border-radius: 999px;
   padding: 0.4rem 1rem;
 }
+.bio-rotator { position: relative; }
+.bio-rotator img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: bio-cycle 7s infinite;
+}
+.bio-rotator img:nth-child(1) { animation-delay: 0s; }
+.bio-rotator img:nth-child(2) { animation-delay: 1s; }
+.bio-rotator img:nth-child(3) { animation-delay: 2s; }
+.bio-rotator img:nth-child(4) { animation-delay: 3s; }
+.bio-rotator img:nth-child(5) { animation-delay: 4s; }
+.bio-rotator img:nth-child(6) { animation-delay: 5s; }
+.bio-rotator img:nth-child(7) { animation-delay: 6s; }
+@keyframes bio-cycle {
+  0% { opacity: 1; }
+  14.29% { opacity: 1; }
+  16.5% { opacity: 0; }
+  97.8% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bio-rotator img { animation: none; }
+  .bio-rotator img:first-child { opacity: 1; }
+}
 .bio-copy { display: grid; gap: 1rem; }
 .bio-copy .role { color: var(--mint-deep); font-weight: 700; }
 .bio-copy h2 { margin-bottom: 0.4rem; }
