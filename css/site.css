@@ -799,20 +799,34 @@ dialog.lightbox::backdrop {
   width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: bio-cycle 7s infinite;
+  animation: bio-cycle-short 15s infinite;
 }
+/* two sets from two shoots: 1s per frame, with the last frame of each
+   set held 2.5s as a pause between sets */
 .bio-rotator img:nth-child(1) { animation-delay: 0s; }
 .bio-rotator img:nth-child(2) { animation-delay: 1s; }
 .bio-rotator img:nth-child(3) { animation-delay: 2s; }
 .bio-rotator img:nth-child(4) { animation-delay: 3s; }
 .bio-rotator img:nth-child(5) { animation-delay: 4s; }
 .bio-rotator img:nth-child(6) { animation-delay: 5s; }
-.bio-rotator img:nth-child(7) { animation-delay: 6s; }
-@keyframes bio-cycle {
+.bio-rotator img:nth-child(7) { animation-delay: 6s; animation-name: bio-cycle-hold; }
+.bio-rotator img:nth-child(8) { animation-delay: 8.5s; }
+.bio-rotator img:nth-child(9) { animation-delay: 9.5s; }
+.bio-rotator img:nth-child(10) { animation-delay: 10.5s; }
+.bio-rotator img:nth-child(11) { animation-delay: 11.5s; }
+.bio-rotator img:nth-child(12) { animation-delay: 12.5s; animation-name: bio-cycle-hold; }
+@keyframes bio-cycle-short {
   0% { opacity: 1; }
-  14.29% { opacity: 1; }
-  16.5% { opacity: 0; }
-  97.8% { opacity: 0; }
+  6.67% { opacity: 1; }
+  7.7% { opacity: 0; }
+  99% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes bio-cycle-hold {
+  0% { opacity: 1; }
+  16.67% { opacity: 1; }
+  17.7% { opacity: 0; }
+  99% { opacity: 0; }
   100% { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
