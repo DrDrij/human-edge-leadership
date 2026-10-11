@@ -637,6 +637,7 @@ dialog.lightbox {
   background: transparent;
   max-width: min(64rem, 94vw);
   width: 100%;
+  margin: auto; /* restore UA centring killed by the global reset */
 }
 dialog.lightbox::backdrop {
   background: rgba(22, 33, 29, 0.82);
