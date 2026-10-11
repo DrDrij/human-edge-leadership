@@ -43,36 +43,102 @@
       <h2 id="stills-h">Real rooms, real people, real change</h2>
       <div class="stills-row">
         <figure class="still">
-          <div class="frame">
-            <img src="img/still-bts-1.jpg" alt="Film crew shooting a scene with an actor at a desk in a modern office">
-          </div>
+          <button class="frame-btn" type="button" aria-label="View larger: On set, office shoot">
+            <span class="frame">
+              <img src="img/still-bts-1.jpg" alt="Film crew shooting a scene with an actor at a desk in a modern office">
+            </span>
+          </button>
           <figcaption><span>Still 041</span><span class="t">On set, office shoot</span></figcaption>
         </figure>
         <figure class="still">
-          <div class="frame">
-            <img src="img/still-bts-2.jpg" alt="Felicity and a crew member smiling in a behind-the-scenes selfie">
-          </div>
+          <button class="frame-btn" type="button" aria-label="View larger: Flick + crew">
+            <span class="frame">
+              <img src="img/still-bts-2.jpg" alt="Felicity and a crew member smiling in a behind-the-scenes selfie">
+            </span>
+          </button>
           <figcaption><span>Still 042</span><span class="t">Flick + crew</span></figcaption>
         </figure>
         <figure class="still">
-          <div class="frame">
-            <img src="img/still-bts-3.jpg" alt="Cinema camera framed on an actor seated in an office chair">
-          </div>
+          <button class="frame-btn" type="button" aria-label="View larger: Through the lens">
+            <span class="frame">
+              <img src="img/still-bts-3.jpg" alt="Cinema camera framed on an actor seated in an office chair">
+            </span>
+          </button>
           <figcaption><span>Still 043</span><span class="t">Through the lens</span></figcaption>
         </figure>
         <figure class="still">
-          <div class="frame">
-            <img src="img/still-bts-4.jpg" alt="Full film set in a boardroom with boom mic, dolly and cast around the table">
-          </div>
+          <button class="frame-btn" type="button" aria-label="View larger: Boardroom scene">
+            <span class="frame">
+              <img src="img/still-bts-4.jpg" alt="Full film set in a boardroom with boom mic, dolly and cast around the table">
+            </span>
+          </button>
           <figcaption><span>Still 044</span><span class="t">Boardroom scene</span></figcaption>
         </figure>
         <figure class="still tint">
-          <div class="frame">
-            <img src="img/still-bts-5.jpg" alt="Outdoor shoot with camera operator, reflector and crew in the sunshine">
-          </div>
+          <button class="frame-btn" type="button" aria-label="View larger: On location">
+            <span class="frame">
+              <img src="img/still-bts-5.jpg" alt="Outdoor shoot with camera operator, reflector and crew in the sunshine">
+            </span>
+          </button>
           <figcaption><span>Still 045</span><span class="t">On location</span></figcaption>
         </figure>
       </div>
+
+      <dialog class="lightbox" id="lightbox" aria-label="Production still, enlarged view">
+        <div class="lightbox-in">
+          <button class="lb-close" type="button" id="lb-close" aria-label="Close enlarged view">&#10005;</button>
+          <img id="lb-img" src="" alt="">
+          <div class="lb-bar">
+            <span class="lb-caption mono" id="lb-caption" aria-live="polite"></span>
+            <span class="lb-nav">
+              <button type="button" id="lb-prev" aria-label="Previous still">&larr;</button>
+              <button type="button" id="lb-next" aria-label="Next still">&rarr;</button>
+            </span>
+          </div>
+        </div>
+      </dialog>
+      <script>
+        (function () {
+          var dlg = document.getElementById("lightbox");
+          if (!dlg || !dlg.showModal) { return; }
+          var btns = Array.prototype.slice.call(document.querySelectorAll(".frame-btn"));
+          var imgEl = document.getElementById("lb-img");
+          var capEl = document.getElementById("lb-caption");
+          var current = 0;
+          function show(i) {
+            current = (i + btns.length) % btns.length;
+            var btn = btns[current];
+            var img = btn.querySelector("img");
+            var fig = btn.closest("figure");
+            var cap = fig ? fig.querySelector("figcaption") : null;
+            imgEl.src = img.src;
+            imgEl.alt = img.alt;
+            var parts = cap ? Array.prototype.map.call(cap.querySelectorAll("span"),
+              function (sp) { return sp.textContent.trim(); }).join(" \u00b7 ") : "";
+            capEl.textContent = (parts ? parts + " \u00b7 " : "")
+              + (current + 1) + " of " + btns.length;
+          }
+          btns.forEach(function (btn, i) {
+            btn.addEventListener("click", function () {
+              show(i);
+              dlg.showModal();
+            });
+          });
+          document.getElementById("lb-prev").addEventListener("click", function () { show(current - 1); });
+          document.getElementById("lb-next").addEventListener("click", function () { show(current + 1); });
+          document.getElementById("lb-close").addEventListener("click", function () { dlg.close(); });
+          dlg.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowLeft") { e.preventDefault(); show(current - 1); }
+            if (e.key === "ArrowRight") { e.preventDefault(); show(current + 1); }
+          });
+          dlg.addEventListener("click", function (e) {
+            if (e.target === dlg) { dlg.close(); }
+          });
+          dlg.addEventListener("close", function () {
+            if (btns[current]) { btns[current].focus(); }
+          });
+        })();
+      </script>
     </div>
   </section>
 
