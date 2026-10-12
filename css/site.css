@@ -1010,3 +1010,14 @@ footer.site a:focus-visible { outline-color: var(--mint); }
   * { transition: none !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- wide-screen accommodation ---------- */
+/* Scale the whole rem-based design up on very large viewports so the
+   site doesn't sit as a small band on 4K monitors at low OS scaling. */
+@media (min-width: 1800px) {
+  html { font-size: 19px; }
+  .wrap, .header-in, .footer-grid, .footer-base { max-width: 80rem; }
+}
+@media (min-width: 2400px) {
+  html { font-size: 22px; }
+}
