@@ -27,7 +27,7 @@
 <header class="site">
   <div class="header-in">
     <a class="logo" href="index.html" aria-label="Human Edge Leadership, home"><span class="logo-mark" aria-hidden="true">H</span></a>
-    <nav class="primary" aria-label="Primary">
+    <nav class="primary" id="site-nav" aria-label="Primary">
       <ul>
         <li><a href="the-situation.html">The situation</a></li>
         <li><a href="our-approach.html">Our approach</a></li>
@@ -37,6 +37,10 @@
         <li><a href="book.html">Book a conversation</a></li>
       </ul>
     </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle-text" aria-hidden="true">Menu</span>
+    </button>
   </div>
 </header>
 
@@ -253,5 +257,6 @@
     <span>Made in Australia.</span>
   </div>
 </footer>
+<script src="js/nav.js" defer></script>
 </body>
 </html>
