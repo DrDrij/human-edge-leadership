@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /robots.html
+Disallow: /signature.html
+
+Sitemap: https://humanedgeleadership.com.au/sitemap.xml
