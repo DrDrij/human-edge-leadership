@@ -801,15 +801,13 @@ dialog.lightbox::backdrop {
   opacity: 0;
   animation: bio-cycle 4s infinite;
 }
-/* 1s per frame, looping straight back to the start */
+/* two portraits, 2s each, continuous loop */
 .bio-rotator img:nth-child(1) { animation-delay: 0s; }
-.bio-rotator img:nth-child(2) { animation-delay: 1s; }
-.bio-rotator img:nth-child(3) { animation-delay: 2s; }
-.bio-rotator img:nth-child(4) { animation-delay: 3s; }
+.bio-rotator img:nth-child(2) { animation-delay: 2s; }
 @keyframes bio-cycle {
   0% { opacity: 1; }
-  25% { opacity: 1; }
-  28% { opacity: 0; }
+  50% { opacity: 1; }
+  54% { opacity: 0; }
   96% { opacity: 0; }
   100% { opacity: 1; }
 }
