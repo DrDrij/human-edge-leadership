@@ -976,8 +976,17 @@ footer.site a { color: rgba(251, 250, 246, 0.85); text-decoration: none; overflo
 footer.site a:hover { color: var(--mint); text-decoration: underline; text-underline-offset: 3px; }
 footer.site a:focus-visible { outline-color: var(--mint); }
 .footer-contact { display: grid; gap: 0.5rem; }
-.footer-base {
+.footer-ack {
   max-width: 74rem; margin: 2.4rem auto 0; padding: 1.4rem 1.5rem 0;
+  border-top: 1px solid rgba(251, 250, 246, 0.2);
+}
+.footer-ack p {
+  max-width: 44rem;
+  font-size: 0.9rem;
+  color: rgba(251, 250, 246, 0.75);
+}
+.footer-base {
+  max-width: 74rem; margin: 1.4rem auto 0; padding: 1.4rem 1.5rem 0;
   border-top: 1px solid rgba(251, 250, 246, 0.2);
   display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
 }
